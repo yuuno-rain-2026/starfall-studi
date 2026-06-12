@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>祝宝贝生日快乐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: "Microsoft YaHei", cursive;
+        }
+        /* 祝福首页样式 美化字体 */
+        .welcome-box {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(#1b0034, #000);
+            padding: 30px;
+        }
+        #textBox {
+            font-size: 36px;
+            line-height: 2.2;
+            text-align: center;
+            background: linear-gradient(90deg, #ff7eb3, #fffd77, #70e1ff);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 25px rgba(255, 126, 179, 0.5);
+            letter-spacing: 3px;
+        }
+
+        /* 生日蛋糕页面 */
+        .birthday-page {
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: relative;
+            background: radial-gradient(#201042, #050010);
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .main-wrap {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-40%);
+            text-align: center;
+            z-index: 2;
+        }
+        .birthday-title {
+            font-size: 48px;
+            margin-bottom: 60px;
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4, #f6d365);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px #ff9a9e;
+            letter-spacing: 4px;
+        }
+        /* 蛋糕容器 */
+        .cake-container {
+            position: relative;
+            margin: 0 auto;
+        }
+        /* 底层蛋糕 */
+        .cake-layer-1 {
+            width: 380px;
+            height: 120px;
+            background: linear-gradient(#f8b8c8, #e888a5);
+            border-radius: 60px 60px 10px 10px;
+            margin: 0 auto;
+            position: relative;
+        }
+        /* 上层蛋糕 */
+        .cake-layer-2 {
+            width: 260px;
+            height: 90px;
+            background: linear-gradient(#ffc8dd, #ffafcc);
+            border-radius: 40px 40px 0 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -80px;
+        }
+        /* 奶油花边 */
+        .cream {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            bottom: -10px;
+        }
+        /* 蜡烛 */
+        .candle {
+            width: 10px;
+            height: 70px;
+            background: linear-gradient(#ffffff, #ffdddd);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -70px;
+            border-radius: 3px;
+        }
+        /* 跳动火焰 */
+        .flame {
+            width: 20px;
+            height: 30px;
+            background: radial-gradient(circle, #fff 0%, #ffdd00 40%, #ff5500 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            left: 50%;
+            top: -28px;
+            transform: translateX(-50%);
+            animation: flicker 0.25s infinite alternate;
+            filter: blur(1px);
+        }
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.2) rotate(2deg); opacity: 1; }
+        }
+        /* 蛋糕底座 */
+        .cake-base {
+            width: 420px;
+            height: 45px;
+            background: linear-gradient(#994c5c, #6b2e3a);
+            border-radius: 12px;
+            margin: 10px auto 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- 第一页 文字祝福 -->
+    <div class="welcome-box" id="welcome">
+        <div id="textBox"></div>
+    </div>
+
+    <!-- 第二页 蛋糕+烟花 -->
+    <div class="birthday-page" id="birthdayPage">
+        <canvas id="firework"></canvas>
+        <div class="main-wrap">
+            <div class="birthday-title">生日快乐 我的宝贝</div>
+            <div class="cake-container">
+                <div class="cake-layer-1">
+                    <div class="cream"></div>
+                    <div class="cake-layer-2">
+                        <div class="cream"></div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                    </
